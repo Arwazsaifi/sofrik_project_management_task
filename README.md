@@ -127,7 +127,7 @@ npm run start:dev
 ### Running Tests
 ```bash
 # Run all tests
-npm run test
+npm run test:e2e
 
 
 
