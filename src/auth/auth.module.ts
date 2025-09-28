@@ -18,13 +18,6 @@ import { LocalStrategy } from "./strategies/local.strategy";
         const jwtSecret = configService.get<string>("JWT_SECRET");
         const jwtExpiresIn = configService.get<string>("JWT_EXPIRES_IN") || "7d";
         
-        // Log JWT module configuration
-        console.log('=== JWT Module Configuration ===');
-        console.log('JWT_SECRET loaded:', jwtSecret ? '✓ Yes' : '✗ No');
-        console.log('JWT_SECRET length:', jwtSecret ? jwtSecret.length : 0);
-        console.log('JWT_EXPIRES_IN:', jwtExpiresIn);
-        console.log('================================');
-        
         return {
           secret: jwtSecret,
           signOptions: {
