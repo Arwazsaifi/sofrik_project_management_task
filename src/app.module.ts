@@ -10,14 +10,14 @@ import { TasksModule } from "./tasks/tasks.module";
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ".env",
+      envFilePath: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
-        const mongoUri = configService.get<string>("MONGODB_URI");
+        const mongoUri = configService.get<string>('MONGODB_URI') || configService.get<string>('MONGO_URI');
         return {
-          uri: mongoUri || "mongodb://localhost:27017/project-management",
+          uri: mongoUri || 'mongodb://localhost:27017/project-management',
         };
       },
       inject: [ConfigService],
